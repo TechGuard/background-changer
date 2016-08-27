@@ -12,9 +12,8 @@ namespace BackgroundChanger
         private const int SPI_SETDESKWALLPAPER = 20;
         private const int SPIF_UPDATEINIFILE = 0x1;
         private const int SPIF_SENDWININICHANGE = 0x2;
-
-        public static readonly string SourceUrl = "https://source.unsplash.com/random/1920x1080";
-        public static readonly string DestinationFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "desktop.jpg");
+        
+        public static readonly string DestinationFile = Path.Combine(Config.ApplicationFolder, "desktop.jpg");
 
 
         /// <summary>
@@ -22,7 +21,7 @@ namespace BackgroundChanger
         /// </summary>
         public static void Update()
         {
-            Downloader.DownloadImageToFile(SourceUrl, DestinationFile);
+            Downloader.DownloadImageToFile(Config.GetString("source"), DestinationFile);
             SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, DestinationFile, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
         }
     }

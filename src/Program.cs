@@ -7,10 +7,12 @@ namespace BackgroundChanger
     {
         static void Main(string[] args)
         {
+            Config.Load();
+
             // Start timer
             Timer timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(OnTick);
-            timer.Interval = 60 * 1000;
+            timer.Interval = Config.GetInt("interval") * 1000;
             timer.Enabled = true;
 
             // Start without delay
