@@ -7,19 +7,25 @@ namespace BackgroundChanger
     {
         static void Main(string[] args)
         {
-            Config.Load();
+            using (new AppLock())
+            {
+                Config.Load();
+                
+                // Start timer
+                Timer timer = new Timer();
+                timer.Elapsed += new ElapsedEventHandler(OnTick);
+                timer.Interval = Config.GetInt("interval") * 1000;
+                timer.Enabled = true;
 
-            // Start timer
-            Timer timer = new Timer();
-            timer.Elapsed += new ElapsedEventHandler(OnTick);
-            timer.Interval = Config.GetInt("interval") * 1000;
-            timer.Enabled = true;
+                // Start without delay
+                OnTick(null, null);
 
-            // Start without delay
-            OnTick(null, null);
-
-            // Keep application running
-            Console.ReadLine();
+                // Keep application running
+                while (true)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
         }
 
         private static void OnTick(object source, ElapsedEventArgs e)
