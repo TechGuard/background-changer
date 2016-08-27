@@ -5,7 +5,7 @@ namespace BackgroundChanger
 {
     class AppLock : IDisposable
     {
-        public static readonly string AppName = "{079216d0-a9bb-4ddf-ad89-5c1042f2efd7}";
+        public static readonly string AppName = "{61cc2cf5-3674-4e8f-b7d5-0838f1cfb5a3}";
 
         private Mutex mutex;
 
