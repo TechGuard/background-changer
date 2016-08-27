@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace BackgroundChanger
 {
@@ -10,7 +7,8 @@ namespace BackgroundChanger
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("New project.");
+            string dest = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cat.jpg");
+            Downloader.DownloadImageToFile("https://c2.staticflickr.com/1/70/175237265_029f7974a2_b.jpg", dest);
         }
     }
 }
