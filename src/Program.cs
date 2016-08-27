@@ -13,14 +13,17 @@ namespace BackgroundChanger
             timer.Interval = 60 * 1000;
             timer.Enabled = true;
 
+            // Start without delay
+            OnTick(null, null);
+
             // Keep application running
             Console.ReadLine();
         }
 
         private static void OnTick(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Updated desktop");
             Desktop.Update();
+            Console.WriteLine("Updated desktop");
         }
     }
 }
