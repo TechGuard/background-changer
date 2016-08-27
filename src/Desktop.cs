@@ -14,7 +14,7 @@ namespace BackgroundChanger
         private const int SPIF_SENDWININICHANGE = 0x2;
 
         public static readonly string SourceUrl = "https://source.unsplash.com/random/1920x1080";
-        public static readonly string DestinationFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "background.jpg");
+        public static readonly string DestinationFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "desktop.jpg");
 
 
         /// <summary>
