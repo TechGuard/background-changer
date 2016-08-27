@@ -1,47 +1,34 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 
 namespace BackgroundChanger
 {
     class AppLock : IDisposable
     {
-        public static readonly string LockFile = Path.Combine(Config.ApplicationFolder, ".locked");
-        
-        /// <summary>
-        /// Check if lock file exists
-        /// </summary>
-        public static bool Check()
-        {
-            return File.Exists(LockFile);
-        }
+        public static readonly string AppName = "{079216d0-a9bb-4ddf-ad89-5c1042f2efd7}";
+
+        private Mutex mutex;
+
 
         /// <summary>
-        /// Create lock file
+        /// Try to lock application
         /// </summary>
         public AppLock()
         {
-            if (Check())
+            mutex = new Mutex(false, AppName);
+            if (!mutex.WaitOne(0, false))
             {
                 throw new ApplicationException("Already running");
             }
-
-            // Create directory
-            if (!Directory.Exists(Config.ApplicationFolder))
-            {
-                Directory.CreateDirectory(Config.ApplicationFolder);
-            }
-            
-            // Create lock file
-            File.Create(LockFile);
-            File.SetAttributes(LockFile, FileAttributes.Hidden | FileAttributes.ReadOnly);
         }
 
         /// <summary>
-        /// Destroy lock file
+        /// Unlock application
         /// </summary>
         public void Dispose()
         {
-            File.Delete(LockFile);
+            mutex.Dispose();
         }
     }
 }
