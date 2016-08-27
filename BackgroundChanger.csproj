@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Config.cs" />
     <Compile Include="src\Desktop.cs" />
     <Compile Include="src\Downloader.cs" />
     <Compile Include="src\Program.cs" />
