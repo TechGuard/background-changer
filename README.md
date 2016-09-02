@@ -10,16 +10,15 @@ Images provided by [unsplash.com](https://unsplash.com/)
 
 Add this application to your startup folder. e.g. ``Run > shell:startup``
 
+Make sure you set your background to slideshow and select the correct folder:
+
+By default the images are stored in ``MyPictures\Downloaded``
+
 ## Usage
 
 If you like to customize your setup, you can edit the configuration file.
 
-Location:
-```
-%appdata%\BackgroundChanger
-```
-
-You can edit the ``source`` url and ``interval`` delay.
+The configuration file is generated next to the executable.
 
 ## Contributing
 
