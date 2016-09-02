@@ -6,12 +6,9 @@ namespace BackgroundChanger
 {
     class Config
     {
-        public static readonly string ApplicationFolder = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BackgroundChanger");
+        public static readonly string ConfigurationFile = Path.Combine(Directory.GetCurrentDirectory(), "config.cfg");
 
-        public static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "config.cfg");
-
-        public static Dictionary<string, string> data;
+        public static Dictionary<string, string> data = new Dictionary<string, string>();
 
 
         public static string GetString(string key)
@@ -42,14 +39,8 @@ namespace BackgroundChanger
         /// <summary>
         /// Load configuration file
         /// </summary>
-        public static void Load()
+        public static void Reload()
         {
-            // Create directory
-            if(!Directory.Exists(ApplicationFolder))
-            {
-                Directory.CreateDirectory(ApplicationFolder);
-            }
-
             // Create default configuration file
             if (!File.Exists(ConfigurationFile))
             {
@@ -60,7 +51,7 @@ namespace BackgroundChanger
             string[] lines = File.ReadAllLines(ConfigurationFile);
 
             // Parse file
-            data = new Dictionary<string, string>();
+            data.Clear();
 
             foreach (string line in lines)
             {
@@ -91,8 +82,14 @@ namespace BackgroundChanger
                 "# Source URL for retrieving image",
                 "source = https://source.unsplash.com/random/1920x1080",
                 "",
-                "# Delay in seconds between switching images",
+                "# Source URL for retrieving image",
+                "folder = " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Downloaded"),
+                "",
+                "# Delay in minutes between switching images",
                 "interval = 60",
+                "",
+                "# Total amount of images to download",
+                "total = 10",
             });
         }
     }
