@@ -46,7 +46,7 @@ namespace BackgroundChanger
             {
                 Create();
             }
-            
+
             // Read file
             string[] lines = File.ReadAllLines(ConfigurationFile);
 
@@ -55,7 +55,7 @@ namespace BackgroundChanger
 
             foreach (string line in lines)
             {
-                if(line.Trim().Length == 0 || line[0] == '#')
+                if (line.Trim().Length == 0 || line[0] == '#')
                 {
                     continue;
                 }
@@ -85,7 +85,7 @@ namespace BackgroundChanger
                 "# Source URL for retrieving image",
                 "folder = " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Downloaded"),
                 "",
-                "# Delay in minutes between switching images",
+                "# Delay (in minutes) between switching images",
                 "interval = 60",
                 "",
                 "# Total amount of images to download",

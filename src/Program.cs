@@ -14,8 +14,16 @@ namespace BackgroundChanger
                     Config.Reload();
                     int interval = Config.GetInt("interval") * 60 * 1000;
 
-                    Desktop.Update();
-                    Console.WriteLine("Updated desktop");
+                    try
+                    {
+                        Desktop.Update();
+                        Console.WriteLine("Updated desktop");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error occured.");
+                        Console.WriteLine(ex);
+                    }
 
                     Thread.Sleep(interval);
                 }

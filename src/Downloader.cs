@@ -15,10 +15,13 @@ namespace BackgroundChanger
         /// <param name="format">image format default jpeg</param>
         public static void DownloadImageToFile(string url, string dest, ImageFormat format = null)
         {
-            if(format == null)
+            if (format == null)
             {
                 format = ImageFormat.Jpeg;
             }
+
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 
             using (WebClient webClient = new WebClient())
             {
